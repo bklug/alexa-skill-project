@@ -1,47 +1,43 @@
 {
-    "interactionModel":{
-        "languageModel":{
-            "invocationName":"hello world",
-            "types":[],
-            "intents":[
-                {
-                  "name": "AMAZON.CancelIntent",
-                  "samples": []
-                },
-                {
-                  "name": "AMAZON.HelpIntent",
-                  "samples": []
-                },
-                {
-                  "name": "AMAZON.StopIntent",
-                  "samples": []
-                },
-                {
-                    "name":"HelloWorldIntent",
-                    "slots":[
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "school clubs",
+      "types": [],
+      "intents": [{
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "GetNewClubIntent",
+          "slots": [
 
-                    ],
-                    "samples":[
-                        "hello",
-                        "say hello",
-                        "say hello world"
-                    ]
-                },
-                {
-                    "name":"MyNameIsIntent",
-                    "slots":[
-                        {
-                            "name":"name",
-                            "type":"AMAZON.US_FIRST_NAME"
-                        }
-                    ],
-                    "samples":[
-                        "my name is {name}",
-                        "i am {name}",
-                        "you can call me {name}"
-                    ]
-                }
-            ]
+          ],
+          "samples": [
+            "a club",
+            "a school club",
+            "tell me a club",
+            "tell me a school club",
+            "give me a club",
+            "give me a school club",
+            "tell me club",
+            "tell me a random club",
+            "give me random club",
+            "give me a random club",
+            "give me some clubs",
+            "give me some school club information",
+            "tell me something",
+            "give me something"
+          ]
         }
+      ]
     }
+  }
 }

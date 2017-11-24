@@ -5,12 +5,13 @@
         "en-US": {
           "summary": "Clubs at British Columbia Institute of Technology.",
           "examplePhrases": [
-            "Alexa open school clubs",
-            "Alexa ask school clubs for a club"
+            "Alexa tell me a school club",
+            "Alexa start school clubs",
+            "Alexa what is a school club"
           ],
           "keywords": [
             "school",
-            "clubs",
+            "clubs"
           ],
           "name": "School Clubs",
           "description": "Ask for School Clubs at BCIT."

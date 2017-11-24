@@ -2,4 +2,4 @@
 
 npm install
 
-ask simulate -l en-US -t "alexa, start school clubs"
+ask simulate -l en-US -t "Alexa tell me a school club"
