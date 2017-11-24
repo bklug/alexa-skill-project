@@ -2,4 +2,4 @@
 
 npm install
 
-Test: ask simulate -l en-GB -t "alexa, start school clubs"
+ask simulate -l en-US -t "alexa, start school clubs"
