@@ -5,9 +5,8 @@
         "en-US": {
           "summary": "Clubs at British Columbia Institute of Technology.",
           "examplePhrases": [
-            "Alexa tell me a school club",
             "Alexa start school clubs",
-            "Alexa what is a school club"
+            "Alexa, tell me about school clubs"
           ],
           "keywords": [
             "school",
