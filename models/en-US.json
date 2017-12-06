@@ -16,25 +16,12 @@
           "samples": []
         },
         {
-          "name": "GetNewClubIntent",
+          "name": "GetClubsForDayIntent",
           "slots": [
 
           ],
           "samples": [
-            "a club",
-            "a school club",
-            "tell me a club",
-            "tell me a school club",
-            "give me a club",
-            "give me a school club",
-            "tell me club",
-            "tell me a random club",
-            "give me random club",
-            "give me a random club",
-            "give me some clubs",
-            "give me some school club information",
-            "tell me something",
-            "give me something"
+            "what is a club on {day}"
           ]
         }
       ]

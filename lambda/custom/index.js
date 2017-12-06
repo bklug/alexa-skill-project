@@ -10,6 +10,7 @@
 
 'use strict';
 const Alexa = require('alexa-sdk');
+const Moment = require('moment');
 
 //=========================================================================================================================================
 //TODO: The items below this comment need your attention.
@@ -25,20 +26,23 @@ const HELP_MESSAGE = 'You can say tell me a school club, or, you can say exit...
 const HELP_REPROMPT = 'What can I help you with?';
 const STOP_MESSAGE = 'Goodbye!';
 
-//=========================================================================================================================================
-//TODO: Replace this data with your own.  You can find translations of this data at http://github.com/alexa/skill-sample-node-js-fact/lambda/data
-//=========================================================================================================================================
 const data = [
     'There is an archery club on wednesday at 3 o\'clock.',
-    'There is an bowling club on tuesday at 4 o\'clock.',
-    'There is an fight club on friday at 9 o\'clock.',
-    'There is an dungeons and dragons club on monday at 2 o\'clock.',
-    'There is an swim club on thursday at 6 o\'clock.'
+    'There is a bowling club on tuesday at 4 o\'clock.',
+    'There is a fight club on friday at 9 o\'clock.',
+    'There is a dungeons and dragons club on monday at 2 o\'clock.',
+    'There is a swim club on thursday at 6 o\'clock.'
 ];
 
-//=========================================================================================================================================
-//Editing anything below this line might break your skill.
-//=========================================================================================================================================
+
+AWS.config.update({
+  region: "us-west-2",
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_KEY
+});
+var docClient = new AWS.DynamoDB.DocumentClient();
+
+const tableName = "SchoolClubs";
 
 exports.handler = function(event, context, callback) {
     var alexa = Alexa.handler(event, context);
@@ -49,9 +53,9 @@ exports.handler = function(event, context, callback) {
 
 const handlers = {
     'LaunchRequest': function () {
-        this.emit('GetNewClubIntent');
+        this.emit('GetClubsForDayIntent');
     },
-    'GetNewClubIntent': function () {
+    'GetClubsForDayIntent': function (day) {
         const clubArr = data;
         const factIndex = Math.floor(Math.random() * clubArr.length);
         const randomFact = clubArr[factIndex];
@@ -77,3 +81,28 @@ const handlers = {
         this.emit(':responseReady');
     },
 };
+
+// callback(error, clubs)
+// defaults to today
+var getClubsForDay = function(theDay, callback) {
+  var day = (day == null) ? moment().format('dddd').toLowerCase() : theDay;
+
+  var params = {
+    TableName: tableName,
+    FilterExpression: "#day = :day",
+    ExpressionAttributeNames: {
+      "#day": "day",
+    },
+    ExpressionAttributeValues: {
+      ":day": day
+    }
+  };
+
+  docClient.scan(params, function(error, data) {
+    if (error) {
+      callback(error);
+    } else {
+      callback(null, data.Items);
+    }
+  });
+}
