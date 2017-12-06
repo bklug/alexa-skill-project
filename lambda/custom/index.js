@@ -11,7 +11,6 @@ AWS.config.update({
 const docClient = new AWS.DynamoDB.DocumentClient();
 const tableName = "SchoolClubs";
 
-
 const APP_ID = undefined;
 const SKILL_NAME = 'School Clubs';
 const HELP_MESSAGE = 'You can say tell me a school club for a date, or, you can say exit... What can I help you with?';
