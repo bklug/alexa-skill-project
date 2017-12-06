@@ -82,6 +82,28 @@ const handlers = {
       }
     });
   },
+  'GetDescriptionForClubIntent': function() {
+    const clubname = this.event.request.intent.slots.clubname.value;
+    console.log(`CLUBNAME: ${clubname}`);
+
+    var strongThis = this;
+
+    getClubsByName(clubname.toLowerCase(), (error, clubs) => {
+      if (error) {
+        console.log("ERROR: " + error);
+      } else {
+        if (clubs.length == 0) {
+          strongThis.response.speak('Sorry, there are were no clubs with that name!');
+          strongThis.emit(':responseReady');
+          return;
+        }
+
+        var club = clubs[0];
+        strongThis.response.speak(club.description);
+        strongThis.emit(':responseReady');
+      }
+    });
+  },
   'AMAZON.HelpIntent': function() {
     const speechOutput = HELP_MESSAGE;
     const reprompt = HELP_REPROMPT;

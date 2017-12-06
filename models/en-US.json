@@ -51,16 +51,65 @@
             "inform me about the {clubname} club",
             "inform me about a {clubname} club",
             "inform me of a {clubname} club",
-            "inform me of an {clubname} club"
-            "inform me of the {clubname} club"
-            "inform me of the next {clubname} club"
+            "inform me of an {clubname} club",
+            "inform me of the {clubname} club",
+            "inform me of the next {clubname} club",
             "to inform me about the next {clubname} club",
             "to inform me about the {clubname} club",
             "to inform me about a {clubname} club",
             "to inform me of a {clubname} club",
-            "to inform me of an {clubname} club"
-            "to inform me of the {clubname} club"
+            "to inform me of an {clubname} club",
+            "to inform me of the {clubname} club",
             "to inform me of the next {clubname} club"
+          ]
+        },
+        {
+          "name": "GetDescriptionForClubIntent",
+          "slots": [
+              {
+                "name": "clubname",
+                "type": "CUSTOM_CLUBS"
+              }
+          ],
+          "samples": [
+            "tell me more about the {clubname} club",
+            "tell me about the {clubname} club",
+            "tell me more about an {clubname} club",
+            "tell me about an {clubname} club",
+            "tell me more about a {clubname} club",
+            "tell me about a {clubname} club",
+            "tell me more details about the {clubname} club",
+            "tell me details about the {clubname} club",
+            "tell me more details about an {clubname} club",
+            "tell me details about an {clubname} club",
+            "tell me more details about a {clubname} club",
+            "tell me details about a {clubname} club",
+            "to tell me more about the {clubname} club",
+            "to tell me about the {clubname} club",
+            "to tell me more about an {clubname} club",
+            "to tell me about an {clubname} club",
+            "to tell me more about a {clubname} club",
+            "to tell me about a {clubname} club",
+            "to tell me more details about the {clubname} club",
+            "to tell me details about the {clubname} club",
+            "to tell me more details about an {clubname} club",
+            "to tell me details about an {clubname} club",
+            "to tell me more details about a {clubname} club",
+            "to tell me details about a {clubname} club",
+            "describe the {clubname} club",
+            "describe details about the {clubname} club",
+            "describe details of an {clubname} club",
+            "describe details of a {clubname} club",
+            "describe details of the {clubname} club",
+            "describe an {clubname} club",
+            "describe a {clubname} club",
+            "to describe the {clubname} club",
+            "to describe details about the {clubname} club",
+            "to describe details of an {clubname} club",
+            "to describe details of a {clubname} club",
+            "to describe details of the {clubname} club",
+            "to describe an {clubname} club",
+            "to describe a {clubname} club"
           ]
         }
       ],
