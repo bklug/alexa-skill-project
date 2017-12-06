@@ -32,7 +32,7 @@ const handlers = {
   },
   'GetClubsForDayIntent': function() {
     const date = this.event.request.intent.slots.day.value;
-    const day = moment(date).format('dddd');
+    const day = Moment(date).format('dddd');
 
     getClubsForDay(day, function(error, clubs) {
       if (clubs.length == 0) {
@@ -67,7 +67,7 @@ const handlers = {
 // callback(error, clubs)
 // defaults to today
 var getClubsForDay = function(theDay, callback) {
-  var day = (theDay == null) ? moment().format('dddd').toLowerCase() : theDay.toLowerCase();
+  var day = (theDay == null) ? Moment().format('dddd').toLowerCase() : theDay.toLowerCase();
 
   var params = {
     TableName: tableName,
@@ -90,6 +90,6 @@ var getClubsForDay = function(theDay, callback) {
 }
 
 var responseForClub = function(club) {
-  const time = moment(club.time, 'HH:mm').format('hh:mm a');
+  const time = Moment(club.time, 'HH:mm').format('hh:mm a');
   return `There is a ${club.name} club at ${time}. It is located at ${club.location}`;
 }
