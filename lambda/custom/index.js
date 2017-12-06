@@ -1,6 +1,8 @@
 'use strict';
 const Alexa = require('alexa-sdk');
+const AWS = require("aws-sdk");
 const Moment = require('moment');
+
 AWS.config.update({
   region: "us-west-2",
   accessKeyId: process.env.AWS_ACCESS_KEY,
@@ -15,10 +17,10 @@ const SKILL_NAME = 'School Clubs';
 const HELP_MESSAGE = 'You can say tell me a school club, or, you can say exit... What can I help you with?';
 const HELP_REPROMPT = 'What can I help you with?';
 const STOP_MESSAGE = 'Goodbye!';
-const NO_CLUBS_MESSAGE = 'Sorry, there are were no clubs matching your criteria!';
 
 
 exports.handler = function(event, context, callback) {
+  console.log("Registering handlers");
   var alexa = Alexa.handler(event, context);
   alexa.appId = APP_ID;
   alexa.registerHandlers(handlers);
@@ -27,24 +29,37 @@ exports.handler = function(event, context, callback) {
 
 const handlers = {
   'LaunchRequest': function() {
-    this.response.speak("What would you like to know about our school clubs at BCIT?").listen(reprompt);
-    this.emit('GetClubsForDayIntent');
+    console.log("HITTTTTTT LAUNCH REQUEST");
+    this.response.speak("Ask me about all the clubs we have here at B.C.I.T.").listen("Ask about a club for any day of the week.");
+    this.emit(':responseReady');
   },
   'GetClubsForDayIntent': function() {
+    console.log("HITTTTT GETCLUBSFORDAYINTENT");
+
     const date = this.event.request.intent.slots.day.value;
+    console.log("DATE: " + date);
     const day = Moment(date).format('dddd');
+    console.log("DAY: " + day);
 
-    getClubsForDay(day, function(error, clubs) {
-      if (clubs.length == 0) {
-        this.response.speak(NO_CLUBS_MESSAGE);
-        this.emit(':responseReady');
-        return;
+    var strongThis = this;
+
+    getClubsForDay(day, (error, clubs) => {
+      if (error) {
+        console.log("ERROR: " + error);
+      } else {
+        if (clubs.length == 0) {
+          this.response.speak('Sorry, there are were no clubs on that day!');
+          this.emit(':responseReady');
+          return;
+        }
+
+        clubs.sort((a, b) => a.time < b.time);
+
+        var club = clubs[0];
+        const time = Moment(club.time, 'HH:mm').format('hh:mm a');
+        strongThis.response.speak(`There is a ${club.name} club at ${time}. It is located at ${club.location}`);
+        strongThis.emit(':responseReady');
       }
-
-      var club = clubs[0];
-      var response = responseForClub(club);
-      this.response.speak(response);
-      this.emit(':responseReady');
     });
   },
   'AMAZON.HelpIntent': function() {
@@ -87,9 +102,4 @@ var getClubsForDay = function(theDay, callback) {
       callback(null, data.Items);
     }
   });
-}
-
-var responseForClub = function(club) {
-  const time = Moment(club.time, 'HH:mm').format('hh:mm a');
-  return `There is a ${club.name} club at ${time}. It is located at ${club.location}`;
 }

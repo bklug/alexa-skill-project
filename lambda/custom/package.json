@@ -1,5 +1,5 @@
 {
-  "name": "skill-sample-nodejs-fact-i18n",
+  "name": "skill-school-clubs",
   "version": "1.0.0",
   "description": "I18n version of fact skill.",
   "main": "index.js",
@@ -9,12 +9,13 @@
   "keywords": [
     "alexa",
     "skill",
-    "fact"
+    "school clubs"
   ],
   "author": "Amazon.com",
   "license": "Apache-2.0",
   "dependencies": {
     "alexa-sdk": "^1.0.12",
+    "aws-sdk": "^2.164.0",
     "moment": "^2.19.3"
   }
 }

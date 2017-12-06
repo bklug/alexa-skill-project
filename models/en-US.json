@@ -24,18 +24,18 @@
               }
           ],
           "samples": [
-            "what is a club on {day}",
-            "what is a club {day}",
-            "what are clubs on {day}",
-            "what are clubs {day}",
-            "what are the clubs {day}",
-            "what clubs will be on {day}",
-            "tell me clubs on {day}",
-            "tell me clubs {day}",
-            "tell me a club on {day}",
-            "tell me a club {day}",
-            "tell me the clubs on {day}",
-            "tell me the clubs {day}"
+            "what is a school club on {day}",
+            "what is a school club {day}",
+            "what are school clubs on {day}",
+            "what are school clubs {day}",
+            "what are the school clubs {day}",
+            "what school clubs will be on {day}",
+            "tell me school clubs on {day}",
+            "tell me school clubs {day}",
+            "tell me a school club on {day}",
+            "tell me a school club {day}",
+            "tell me the school clubs on {day}",
+            "tell me the school clubs {day}"
           ]
         }
       ]
