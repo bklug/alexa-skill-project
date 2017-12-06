@@ -18,10 +18,18 @@
         {
           "name": "GetClubsForDayIntent",
           "slots": [
-
+              {
+                "name": "day",
+                "type": "AMAZON.DATE"
+              }
           ],
           "samples": [
-            "what is a club on {day}"
+            "what is a club on {day}",
+            "what are clubs on {day}",
+            "what are clubs {day}",
+            "what clubs will be on {day}",
+            "tell me clubs on {day}",
+            "tell me a club on {day}",
           ]
         }
       ]
