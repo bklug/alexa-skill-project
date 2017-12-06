@@ -1,4 +1,3 @@
-
 'use strict';
 const Alexa = require('alexa-sdk');
 const Moment = require('moment');
@@ -20,48 +19,49 @@ const NO_CLUBS_MESSAGE = 'Sorry, there are were no clubs matching your criteria!
 
 
 exports.handler = function(event, context, callback) {
-    var alexa = Alexa.handler(event, context);
-    alexa.appId = APP_ID;
-    alexa.registerHandlers(handlers);
-    alexa.execute();
+  var alexa = Alexa.handler(event, context);
+  alexa.appId = APP_ID;
+  alexa.registerHandlers(handlers);
+  alexa.execute();
 };
 
 const handlers = {
-    'LaunchRequest': function () {
-        this.emit('GetClubsForDayIntent');
-    },
-    'GetClubsForDayIntent': function () {
-        const date = this.event.request.intent.slots.day.value;
-        const day = moment(date).format('dddd');
+  'LaunchRequest': function() {
+    this.response.speak("What would you like to know about our school clubs at BCIT?").listen(reprompt);
+    this.emit('GetClubsForDayIntent');
+  },
+  'GetClubsForDayIntent': function() {
+    const date = this.event.request.intent.slots.day.value;
+    const day = moment(date).format('dddd');
 
-        getClubsForDay(day, function(error, clubs) {
-          if (clubs.length == 0) {
-            this.response.speak(NO_CLUBS_MESSAGE);
-            this.emit(':responseReady');
-            return;
-          }
+    getClubsForDay(day, function(error, clubs) {
+      if (clubs.length == 0) {
+        this.response.speak(NO_CLUBS_MESSAGE);
+        this.emit(':responseReady');
+        return;
+      }
 
-          var club = clubs[0];
-          var response = responseForClub(club);
-          this.response.speak(response);
-          this.emit(':responseReady');
-        });
-    },
-    'AMAZON.HelpIntent': function () {
-        const speechOutput = HELP_MESSAGE;
-        const reprompt = HELP_REPROMPT;
+      var club = clubs[0];
+      var response = responseForClub(club);
+      this.response.speak(response);
+      this.emit(':responseReady');
+    });
+  },
+  'AMAZON.HelpIntent': function() {
+    const speechOutput = HELP_MESSAGE;
+    const reprompt = HELP_REPROMPT;
 
-        this.response.speak(speechOutput).listen(reprompt);
-        this.emit(':responseReady');
-    },
-    'AMAZON.CancelIntent': function () {
-        this.response.speak(STOP_MESSAGE);
-        this.emit(':responseReady');
-    },
-    'AMAZON.StopIntent': function () {
-        this.response.speak(STOP_MESSAGE);
-        this.emit(':responseReady');
-    },
+    this.response.speak(speechOutput).listen(reprompt);
+    this.emit(':responseReady');
+  },
+  'AMAZON.CancelIntent': function() {
+    this.response.speak(STOP_MESSAGE);
+    this.emit(':responseReady');
+  },
+  'AMAZON.StopIntent': function() {
+    this.response.speak(STOP_MESSAGE);
+    this.emit(':responseReady');
+  },
 };
 
 // callback(error, clubs)
@@ -90,6 +90,6 @@ var getClubsForDay = function(theDay, callback) {
 }
 
 var responseForClub = function(club) {
-    const time = moment(club.time, 'HH:mm').format('hh:mm a');
-    return `There is a ${club.name} club at ${time}. It is located at ${club.location}`;
+  const time = moment(club.time, 'HH:mm').format('hh:mm a');
+  return `There is a ${club.name} club at ${time}. It is located at ${club.location}`;
 }

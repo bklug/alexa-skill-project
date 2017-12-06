@@ -35,7 +35,7 @@
             "tell me a club on {day}",
             "tell me a club {day}",
             "tell me the clubs on {day}",
-            "tell me the clubs {day}",
+            "tell me the clubs {day}"
           ]
         }
       ]
