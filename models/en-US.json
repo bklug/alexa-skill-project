@@ -25,11 +25,17 @@
           ],
           "samples": [
             "what is a club on {day}",
+            "what is a club {day}",
             "what are clubs on {day}",
             "what are clubs {day}",
+            "what are the clubs {day}",
             "what clubs will be on {day}",
             "tell me clubs on {day}",
+            "tell me clubs {day}",
             "tell me a club on {day}",
+            "tell me a club {day}",
+            "tell me the clubs on {day}",
+            "tell me the clubs {day}",
           ]
         }
       ]
