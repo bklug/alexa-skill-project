@@ -85,7 +85,7 @@ const handlers = {
 // callback(error, clubs)
 // defaults to today
 var getClubsForDay = function(theDay, callback) {
-  var day = (day == null) ? moment().format('dddd').toLowerCase() : theDay;
+  var day = (theDay == null) ? moment().format('dddd').toLowerCase() : theDay;
 
   var params = {
     TableName: tableName,
